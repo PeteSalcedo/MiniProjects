@@ -11,7 +11,7 @@ class Item {
     }
     create() {
         let listItem = document.createElement("div");
-        listItem.classList.add("list_item")
+        listItem.classList.add("list-item")
 
         let input = document.createElement("input");
         input.type = "text";
@@ -20,15 +20,20 @@ class Item {
         input.disabled = true;
 
         let actions = document.createElement("div");
-        actions.classList.add("item_actions")
+        actions.classList.add("item-actions")
         
         let updateButton = document.createElement("button");
         updateButton.classList.add("update")
         updateButton.innerText = "Update"
+        updateButton.addEventListener("click", () => this.update(input))
+
 
         let removeButton = document.createElement("button");
         removeButton.classList.add("remove");
         removeButton.innerText = "Remove"
+        removeButton.addEventListener("click", ()=> {
+            this.remove(listItem)
+        })
 
 
         actions.appendChild(updateButton);
@@ -37,6 +42,12 @@ class Item {
         listItem.appendChild(actions);
 
         itemList.appendChild(listItem)
+    }
+    update(input) {
+        input.disabled = !input.disabled;
+    }
+    remove(listItem){
+        listItem.parentNode.removeChild(listItem)
     }
 
 }
